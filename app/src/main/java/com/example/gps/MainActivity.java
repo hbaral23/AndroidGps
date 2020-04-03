@@ -75,13 +75,9 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode) {
             case 1: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
                     Intent intent = new Intent(MainActivity.this, GpsService.class);
                     startService(intent);
                     Toast.makeText(this, "Service GPS lancé", Toast.LENGTH_LONG).show();
-
-                } else {
-
                 }
                 return;
             }
