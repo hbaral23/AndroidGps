@@ -21,6 +21,7 @@ public class GpsService extends Service {
     private LocationManager locationManager;
     private List<Location> locationList = new ArrayList<>();
     private float distancetracking = 0;
+    private float distancebetweenlastcoords = 0;
     private int j = 0;
 
     public IBinder onBind(Intent intent){
@@ -40,10 +41,12 @@ public class GpsService extends Service {
                     Location loc1 = locationList.get(j);
                     Location loc2 = locationList.get(j + 1);
                     distancetracking += loc1.distanceTo(loc2);
+                    distancebetweenlastcoords = loc1.distanceTo(loc2);
                     j++;
                 }
                 i.putExtra("coordinates", distancetracking);
                 i.putExtra("location", location);
+                i.putExtra("distance", distancebetweenlastcoords);
                 sendBroadcast(i);
 
             }
